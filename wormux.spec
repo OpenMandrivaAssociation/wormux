@@ -2,8 +2,8 @@
 
 %define	name	wormux
 %define	version	0.8
-%define alpha	alpha1
-%define	release	0.alpha1.3
+%define beta	beta1
+%define	release	0.beta1.1
 
 %define	Summary	Free (Libre) clone of Worms from Team17
 
@@ -14,8 +14,8 @@ Release:	%mkrel %{release}
 License:	GPL
 Group:		Games/Arcade
 Url:		http://www.wormux.org/
-Source0:	http://download.gna.org/wormux/%{name}-%{version}%{alpha}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}%{alpha}-%{release}-buildroot
+Source0:	http://download.gna.org/wormux/%{name}-%{version}%{beta}.tar.bz2
+BuildRoot:	%{_tmppath}/%{name}-%{version}%{beta}-%{release}-buildroot
 
 Buildrequires:	libSDL_gfx-devel
 Buildrequires:	libxml++-devel
@@ -47,7 +47,7 @@ are future goals. So, start downloading today, and fight to become king of
 the garden! 
 
 %prep
-%setup -q -n %{name}-%{version}%{alpha}
+%setup -q -n %{name}-%{version}%{beta}
 
 %build
 %configure2_5x	--bindir=%{_gamesbindir} \
@@ -112,5 +112,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/%{name}.xpm
 %{_liconsdir}/%{name}.xpm
 %{_mandir}/man6/%{name}.6.bz2
-
 
