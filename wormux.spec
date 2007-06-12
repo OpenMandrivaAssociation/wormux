@@ -25,6 +25,7 @@ Buildrequires:  SDL_mixer-devel
 Buildrequires:  SDL_net-devel
 BuildRequires:  ImageMagick
 BuildRequires:	desktop-file-utils
+BuildRequires:	libpng-devel
 
 %description
 Almost everyone has heard of the Worms(R) series of games, developed by Team17.
