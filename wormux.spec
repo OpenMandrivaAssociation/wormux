@@ -113,5 +113,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_miconsdir}/%{name}.xpm
 %{_iconsdir}/%{name}.xpm
 %{_liconsdir}/%{name}.xpm
-%{_mandir}/man6/%{name}.6.bz2
+%{_mandir}/man6/%{name}.*
 
