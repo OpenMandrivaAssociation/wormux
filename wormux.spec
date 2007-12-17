@@ -15,7 +15,6 @@ License:	GPL
 Group:		Games/Arcade
 Url:		http://www.wormux.org/
 Source0:	http://download.gna.org/wormux/%{name}-%{version}%{beta}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}%{beta}-%{release}-buildroot
 
 Buildrequires:	libSDL_gfx-devel
 Buildrequires:	libxml++-devel
