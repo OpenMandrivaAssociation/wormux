@@ -2,8 +2,8 @@
 
 %define	name	wormux
 %define	version	0.8
-%define beta	beta2
-%define	release	0.beta2.1
+%define beta	beta4
+%define	release	0.beta4.1
 
 %define	Summary	Free (Libre) clone of Worms from Team17
 
@@ -67,7 +67,7 @@ perl -pi -e 's/wormux_128x128/wormux/' data/wormux.desktop
 # remove the extention of the icon name
 perl -pi -e 's/wormux.png/wormux/' data/wormux.desktop
 # add a ';' at the end of Category list
-perl -pi -e 's/ArcadeGame/ArcadeGame;/' data/wormux.desktop
+# perl -pi -e 's/ArcadeGame/ArcadeGame;/' data/wormux.desktop
 
 %makeinstall_std localedir=%{_datadir}/locale
 
@@ -90,8 +90,8 @@ EOF
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
-  --add-category="Game" \
-  --add-category="ArcadeGame" \
+  --remove-category="Game" \
+  --remove-category="ArcadeGame" \
   --add-category="X-MandrivaLinux-MoreApplications-Games-Arcade" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
@@ -116,5 +116,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_miconsdir}/%{name}.xpm
 %{_iconsdir}/%{name}.xpm
 %{_liconsdir}/%{name}.xpm
+%{_datadir}/pixmaps/%{name}_128x128.png
 %{_mandir}/man6/%{name}.*
-
