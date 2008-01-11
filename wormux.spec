@@ -77,17 +77,6 @@ convert -resize 16x16 data/%{name}.svg $RPM_BUILD_ROOT%{_miconsdir}/%{name}.xpm
 convert -resize 32x32 data/%{name}.svg $RPM_BUILD_ROOT%{_iconsdir}/%{name}.xpm
 convert -resize 48x48 data/%{name}.svg $RPM_BUILD_ROOT%{_liconsdir}/%{name}.xpm
 
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat > $RPM_BUILD_ROOT%{_menudir}/%{name} << EOF
-?package(%name): \
-command="%{_gamesbindir}/%{name}" \
-needs="X11" \
-icon="%{name}.xpm" \
-section="More Applications/Games/Arcade" \
-title="Wormux" \
-longtitle="%{Summary}" \
-xdg="true"
-EOF
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
@@ -113,7 +102,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_menudir}/%{name}
 %{_miconsdir}/%{name}.xpm
 %{_iconsdir}/%{name}.xpm
 %{_liconsdir}/%{name}.xpm
