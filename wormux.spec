@@ -3,7 +3,7 @@
 %define	name	wormux
 %define	version	0.8
 %define beta	beta4
-%define	release	0.beta4.1
+%define	release	0.beta4.2
 
 %define	Summary	Free (Libre) clone of Worms from Team17
 
@@ -11,20 +11,22 @@ Summary:	%{Summary}
 Name:		%{name}
 Version:	%{version}
 Release:	%mkrel %{release}
-License:	GPL
+License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://www.wormux.org/
 Source0:	http://download.gna.org/wormux/%{name}-%{version}%{beta}.tar.bz2
+Patch0:		wormux-fix-autoconf.patch
+Patch1:		wormux-fix-po-makefile.diff
+Patch2:		wormux-no_werror.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}%{beta}-%{release}-buildroot
-
+BuildRequires:	fribidi-devel
 Buildrequires:	libSDL_gfx-devel
 Buildrequires:	libxml++-devel
 Buildrequires:  SDL_image-devel
 Buildrequires:  SDL_ttf-devel
 Buildrequires:  SDL_mixer-devel
 Buildrequires:  SDL_net-devel
-BuildRequires:  ImageMagick
-BuildRequires:	desktop-file-utils
+BuildRequires:  imagemagick
 BuildRequires:	libpng-devel
 BuildRequires:	libcurl-devel
 
@@ -52,13 +54,22 @@ the garden!
 %setup -q -n %{name}-%{version}%{beta}
 
 %build
-%configure2_5x	--bindir=%{_gamesbindir} \
-		--with-datadir-name=%{_gamesdatadir}/%{name}
+#(tpg) get rid of -Werror
+sed -i -e 's/-Werror//' src/Makefile.am
+
+%configure2_5x	\
+	--bindir=%{_gamesbindir} \
+	--with-datadir-name=%{_gamesdatadir}/%{name} \
+	--disable-rpath \
+	--enable-fribidi
+
+#(tpg) get rid of -Werror
+sed -i -e 's/-Werror//' src/Makefile.in
 
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 # allow this script to be executed
 chmod +x install-sh
@@ -72,19 +83,6 @@ perl -pi -e 's/wormux.png/wormux/' data/wormux.desktop
 
 %makeinstall_std localedir=%{_datadir}/locale
 
-mkdir -p $RPM_BUILD_ROOT%{_miconsdir} $RPM_BUILD_ROOT%{_iconsdir} $RPM_BUILD_ROOT%{_liconsdir}
-convert -resize 16x16 data/%{name}.svg $RPM_BUILD_ROOT%{_miconsdir}/%{name}.xpm
-convert -resize 32x32 data/%{name}.svg $RPM_BUILD_ROOT%{_iconsdir}/%{name}.xpm
-convert -resize 48x48 data/%{name}.svg $RPM_BUILD_ROOT%{_liconsdir}/%{name}.xpm
-
-
-desktop-file-install --vendor="" \
-  --remove-category="Application" \
-  --remove-category="Game" \
-  --remove-category="ArcadeGame" \
-  --add-category="X-MandrivaLinux-MoreApplications-Games-Arcade" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
-
 %find_lang %{name}
 
 %post
@@ -94,16 +92,13 @@ desktop-file-install --vendor="" \
 %{clean_menus}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS COPYING INSTALL
+%doc AUTHORS ChangeLog README
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_miconsdir}/%{name}.xpm
-%{_iconsdir}/%{name}.xpm
-%{_liconsdir}/%{name}.xpm
 %{_datadir}/pixmaps/%{name}_128x128.png
 %{_mandir}/man6/%{name}.*
