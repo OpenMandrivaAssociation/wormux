@@ -15,10 +15,6 @@ License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://www.wormux.org/
 Source0:	http://download.gna.org/wormux/%{name}-%{version}%{beta}.tar.bz2
-Patch0:		wormux-fix-autoconf.patch
-Patch1:		wormux-fix-po-makefile.diff
-Patch2:		wormux-no_werror.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}%{beta}-%{release}-buildroot
 BuildRequires:	fribidi-devel
 Buildrequires:	libSDL_gfx-devel
 Buildrequires:	libxml++-devel
@@ -29,6 +25,7 @@ Buildrequires:  SDL_net-devel
 BuildRequires:  imagemagick
 BuildRequires:	libpng-devel
 BuildRequires:	libcurl-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}%{beta}-%{release}-buildroot
 
 %description
 Almost everyone has heard of the Worms(R) series of games, developed by Team17.
