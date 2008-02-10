@@ -3,7 +3,7 @@
 %define	name	wormux
 %define	version	0.8
 %define beta	beta4
-%define	release	0.beta4.2
+%define	release	0.beta4.3
 
 %define	Summary	Free (Libre) clone of Worms from Team17
 
@@ -71,12 +71,8 @@ rm -rf %{buildroot}
 # allow this script to be executed
 chmod +x install-sh
 
-# change the name of the icon
-perl -pi -e 's/wormux_128x128/wormux/' data/wormux.desktop
-# remove the extention of the icon name
-perl -pi -e 's/wormux.png/wormux/' data/wormux.desktop
-# add a ';' at the end of Category list
-# perl -pi -e 's/ArcadeGame/ArcadeGame;/' data/wormux.desktop
+# drop icon extension
+perl -pi -e 's/.png//g' data/wormux.desktop
 
 %makeinstall_std localedir=%{_datadir}/locale
 
