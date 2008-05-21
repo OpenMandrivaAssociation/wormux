@@ -2,8 +2,9 @@
 
 %define	name	wormux
 %define	version	0.8
-%define beta	beta4
-%define	release	0.beta4.3
+#define beta	beta4
+#define	release	0.beta4.3
+%define	release	1
 
 %define	Summary	Free (Libre) clone of Worms from Team17
 
@@ -14,7 +15,8 @@ Release:	%mkrel %{release}
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://www.wormux.org/
-Source0:	http://download.gna.org/wormux/%{name}-%{version}%{beta}.tar.bz2
+#Source0:	http://download.gna.org/wormux/%{name}-%{version}%{beta}.tar.bz2
+Source0:	http://download.gna.org/wormux/%{name}-%{version}.tar.bz2
 BuildRequires:	fribidi-devel
 Buildrequires:	libSDL_gfx-devel
 Buildrequires:	libxml++-devel
@@ -25,7 +27,8 @@ Buildrequires:  SDL_net-devel
 BuildRequires:  imagemagick
 BuildRequires:	libpng-devel
 BuildRequires:	libcurl-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}%{beta}-%{release}-buildroot
+#BuildRoot:	%{_tmppath}/%{name}-%{version}%{beta}-%{release}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Almost everyone has heard of the Worms(R) series of games, developed by Team17.
@@ -48,7 +51,8 @@ are future goals. So, start downloading today, and fight to become king of
 the garden! 
 
 %prep
-%setup -q -n %{name}-%{version}%{beta}
+#%setup -q -n %{name}-%{version}%{beta}
+%setup -q -n %{name}-%{version}
 
 %build
 #(tpg) get rid of -Werror
