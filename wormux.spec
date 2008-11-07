@@ -1,4 +1,5 @@
 #SPEC by Julien Catalano
+%define _disable_ld_no_undefined 1
 
 Summary:	Free (Libre) clone of Worms from Team17
 Name:		wormux
