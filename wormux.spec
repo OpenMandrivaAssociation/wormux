@@ -1,5 +1,4 @@
 #SPEC by Julien Catalano
-%define _disable_ld_no_undefined 1
 
 Summary:	Free (Libre) clone of Worms from Team17
 Name:		wormux
@@ -9,7 +8,7 @@ License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://www.wormux.org/
 Source0:	http://download.gna.org/wormux/%{name}-%{version}.tar.bz2
-BuildRequires:	fribidi-devel
+#BuildRequires:	fribidi-devel
 Buildrequires:	libSDL_gfx-devel
 Buildrequires:	libxml++-devel
 Buildrequires:	SDL_image-devel
@@ -45,6 +44,7 @@ the garden!
 %setup -q -n %{name}-%{version}
 
 %build
+
 #(tpg) get rid of -Werror
 sed -i -e 's/-Werror//' src/Makefile.am
 
@@ -52,7 +52,7 @@ sed -i -e 's/-Werror//' src/Makefile.am
 	--bindir=%{_gamesbindir} \
 	--with-datadir-name=%{_gamesdatadir}/%{name} \
 	--disable-rpath \
-	--enable-fribidi
+	--disable-fribidi
 
 #(tpg) get rid of -Werror
 sed -i -e 's/-Werror//' src/Makefile.in
