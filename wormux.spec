@@ -3,12 +3,13 @@
 Summary:	Free (Libre) clone of Worms from Team17
 Name:		wormux
 Version:	0.8.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://www.wormux.org/
 Source0:	http://download.gna.org/wormux/%{name}-%{version}.tar.bz2
-#BuildRequires:	fribidi-devel
+Patch0:		force_use_libfribidi.patch
+BuildRequires:	fribidi-devel
 Buildrequires:	libSDL_gfx-devel
 Buildrequires:	libxml++-devel
 Buildrequires:	SDL_image-devel
@@ -42,6 +43,7 @@ the garden!
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p1
 
 %build
 
@@ -52,7 +54,7 @@ sed -i -e 's/-Werror//' src/Makefile.am
 	--bindir=%{_gamesbindir} \
 	--with-datadir-name=%{_gamesdatadir}/%{name} \
 	--disable-rpath \
-	--disable-fribidi
+	--enable-fribidi
 
 #(tpg) get rid of -Werror
 sed -i -e 's/-Werror//' src/Makefile.in
