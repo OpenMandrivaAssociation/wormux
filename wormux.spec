@@ -2,13 +2,12 @@
 
 Summary:	Free (Libre) clone of Worms from Team17
 Name:		wormux
-Version:	0.8.2
-Release:	%mkrel 2
+Version:	0.8.3
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://www.wormux.org/
 Source0:	http://download.gna.org/wormux/%{name}-%{version}.tar.bz2
-Patch0:		force_use_libfribidi.patch
 BuildRequires:	fribidi-devel
 Buildrequires:	libSDL_gfx-devel
 Buildrequires:	libxml++-devel
@@ -43,7 +42,6 @@ the garden!
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch0 -p1
 
 %build
 
