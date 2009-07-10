@@ -2,7 +2,7 @@
 
 Summary:	Free (Libre) clone of Worms from Team17
 Name:		wormux
-Version:	0.8.3
+Version:	0.8.4
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Games/Arcade
@@ -89,6 +89,8 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog README
 %{_gamesbindir}/%{name}
+%{_gamesbindir}/%{name}-index-server
+%{_gamesbindir}/%{name}-server
 %{_gamesdatadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}_128x128.png
