@@ -2,7 +2,7 @@
 
 Summary:	Free (Libre) clone of Worms from Team17
 Name:		wormux
-Version:	0.9.0
+Version:	0.9.2.1
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Games/Arcade
@@ -71,16 +71,6 @@ perl -pi -e 's/.png//g' data/wormux.desktop
 %makeinstall_std localedir=%{_datadir}/locale
 
 %find_lang %{name}
-
-%if %mdkversion < 200900
-%post
-%{update_menus}
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%endif
 
 %clean
 rm -rf %{buildroot}
