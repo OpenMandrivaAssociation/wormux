@@ -6,7 +6,7 @@ Version:	0.9.2.1
 Release:	%mkrel 2
 License:	GPLv2+
 Group:		Games/Arcade
-Url:		http://www.wormux.org/
+Url:		https://www.wormux.org/
 Source0:	http://download.gna.org/wormux/%{name}-%{version}.tar.bz2
 BuildRequires:	fribidi-devel
 Buildrequires:	libSDL_gfx-devel
