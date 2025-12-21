@@ -8,6 +8,11 @@ License:	GPLv2+
 Group:		Games/Arcade
 Url:		https://www.wormux.org/
 Source0:	http://download.gna.org/wormux/%{name}-%{version}.tar.bz2
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	fribidi-devel
 Buildrequires:	libSDL_gfx-devel
 Buildrequires:	libxml++-devel
